@@ -1,1 +1,1 @@
-# flutter-getx
+# flutter-getx state managment
