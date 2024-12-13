@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 //import 'package:flutter_getx/home_screen.dart';
-import 'package:flutter_getx/dialogBox.dart';
+import 'package:flutter_getx/components.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -17,6 +17,14 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(primarySwatch: Colors.blue),
       home: const HomeScreen(),
+
+      // Routs
+      
+      // getPages: [
+      //   GetPage(name: '/', page: () => HomeScreen()),
+      //   GetPage(name: '/', page: () => HomeScreen()),
+      //
+      // ],
     );
   }
 }
@@ -31,9 +39,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final List<WidgetExample> example = [
     WidgetExample(
-      title: 'Getx DialogBox',
+      title: 'Getx',
       backgroundColor: Colors.blue,
-      builder: (context) => snackBar(),
+      builder: (context) => camponents(),
     ),
   ];
 

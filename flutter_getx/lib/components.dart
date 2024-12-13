@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-class snackBar extends StatefulWidget {
-  const snackBar({super.key});
+import 'screenOne.dart';
+
+class camponents extends StatefulWidget {
+  const camponents({super.key});
 
   @override
-  State<snackBar> createState() => _snackBarState();
+  State<camponents> createState() => _camponentsState();
 }
 
-class _snackBarState extends State<snackBar> {
+class _camponentsState extends State<camponents> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('SnackBar'),
+        title: const Text('all components'),
       ),
       body: Column(
         children: [
@@ -61,8 +63,8 @@ class _snackBarState extends State<snackBar> {
                 Get.bottomSheet(
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(30)
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(30)
                     ),
                     child: Column(
                       children: [
@@ -86,7 +88,15 @@ class _snackBarState extends State<snackBar> {
                 );
               },
             ),
-          )
+          ), Card(
+            child: ListTile(
+              title: const Text("Navigator"),
+              subtitle: const Text('Go to next screen'),
+              onTap: () {
+                Get.to(navigateScreenOne(name: 'Rakesh',));
+              },
+            ),
+          ),
         ],
       ),
     );
