@@ -1,26 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'components.dart';
-
-class navigateScreenOne extends StatefulWidget {
-  final String? name;
-
-  const navigateScreenOne({super.key, this.name});
+class ScreenOne extends StatefulWidget {
+  var name;
+  ScreenOne({super.key,this.name});
 
   @override
-  State<navigateScreenOne> createState() => _navigateScreenOneState();
+  State<ScreenOne> createState() => _ScreenOneState();
 }
 
-class _navigateScreenOneState extends State<navigateScreenOne> {
+class _ScreenOneState extends State<ScreenOne> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Screen one'),
+        title: const Text('Screen one'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.snackbar(
+            'Rakesh',
+            'Hi rakesh you are doing good',
+            margin: const EdgeInsets.symmetric(
+              horizontal: 20
+            ),
+            backgroundColor: Colors.red,
+          );
+        },child:Icon(Icons.add),
+        backgroundColor: Colors.blue,
       ),
       body: Center(
-        child: Column (
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -33,7 +44,7 @@ class _navigateScreenOneState extends State<navigateScreenOne> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text("My name is ${widget.name}"),
+              child: Text("${Get.arguments[1]}"+"${Get.arguments[0]}"),
             ),
             TextButton(
               onPressed: () {

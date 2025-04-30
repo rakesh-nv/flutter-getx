@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
-import 'screenOne.dart';
-
-class camponents extends StatefulWidget {
-  const camponents({super.key});
+class Camponents extends StatefulWidget {
+  const Camponents({super.key});
 
   @override
-  State<camponents> createState() => _camponentsState();
+  State<Camponents> createState() => _CamponentsState();
 }
 
-class _camponentsState extends State<camponents> {
+class _CamponentsState extends State<Camponents> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,12 +25,24 @@ class _camponentsState extends State<camponents> {
               onTap: () {
                 Get.defaultDialog(
                   title: 'Delete chart',
-                  content: const Column(
+                  content: Column(
                     children: [
-                      Text('cansel'),
-                      Text('cansel'),
-                      Text('cansel'),
-                      Text('cansel'),
+                      ListTile(
+                        leading: const Icon(Icons.light_mode),
+                        title: const Text('Light Theme'),
+                        onTap: () {
+                          Get.changeTheme(ThemeData.light());
+                          Navigator.pop(context);
+                        },
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.dark_mode),
+                        title: const Text('Dark Theme'),
+                        onTap: () {
+                          Get.changeTheme(ThemeData.dark());
+                          Navigator.pop(context);
+                        },
+                      ),
                     ],
                   ),
                   confirm: TextButton(
@@ -63,24 +72,19 @@ class _camponentsState extends State<camponents> {
                 Get.bottomSheet(
                   Container(
                     decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(30)
-                    ),
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(30)),
                     child: Column(
                       children: [
                         ListTile(
                           leading: const Icon(Icons.light_mode),
                           title: const Text('Light Theme'),
-                          onTap: () {
-                            Get.changeTheme(ThemeData.light());
-                          },
+                          onTap: () {},
                         ),
                         ListTile(
                           leading: Icon(Icons.dark_mode),
                           title: Text('Dark Theme'),
-                          onTap: () {
-                            Get.changeTheme(ThemeData.dark());
-                          },
+                          onTap: () {},
                         ),
                       ],
                     ),
@@ -88,17 +92,39 @@ class _camponentsState extends State<camponents> {
                 );
               },
             ),
-          ), Card(
+          ),
+          Card(
             child: ListTile(
-              title: const Text("Navigator"),
-              subtitle: const Text('Go to next screen'),
+                title: const Text("Navigator"),
+                subtitle: const Text('Go to next screenOne'),
+                onTap: () {
+                  Get.toNamed('/ScreenOne',
+                      arguments: ['Rakesh nv', 'My name is: ']);
+                }),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('languages'),
+              subtitle: Text('Translation'),
               onTap: () {
-                Get.to(navigateScreenOne(name: 'Rakesh',));
+                Get.toNamed('/Languages');
               },
             ),
-          ),
+          )
         ],
       ),
     );
   }
+}
+
+class Cards {
+  final String title;
+  final String subtitle;
+  final String next;
+
+  Cards({
+    required this.title,
+    required this.subtitle,
+    required this.next,
+  });
 }
