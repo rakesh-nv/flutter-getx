@@ -1,6 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../../getx/count_getx.dart';
 
 class CounterScreen extends StatefulWidget {
   const CounterScreen({super.key});
@@ -10,7 +14,7 @@ class CounterScreen extends StatefulWidget {
 }
 
 class _CounterScreenState extends State<CounterScreen> {
-  int x = 0;
+  final CountController controller = Get.put(CountController());
 
   @override
   Widget build(BuildContext context) {
@@ -18,18 +22,52 @@ class _CounterScreenState extends State<CounterScreen> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          setState(() {
-            x++;
-          });
+          controller.countIncrement();
         },
         child: const Icon(Icons.add),
       ),
       appBar: AppBar(),
-      body: Center(
-        child: Text(
-          x.toString(),
-          style: const TextStyle(fontSize: 60),
-        ),
+      body: Column(
+        children: [
+          Center(
+            child: Obx(
+              () {
+                return Text(
+                  controller.counter.toString(),
+                  style: const TextStyle(fontSize: 60),
+                );
+              },
+            ),
+          ),
+          Obx(
+            () => Container(
+              height: 100,
+              color: Colors.red.withOpacity(controller.opacity.value),
+            ),
+          ),
+          Obx(
+            () => Slider(
+              value: controller.opacity.value,
+              onChanged: (value) {
+                controller.setOpacity(value);
+              },
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text('Notifications'),
+              Obx(
+                () => Switch(
+                  value: controller.notification.value,
+                  onChanged: (value) {
+                    controller.setSwitch(value);
+                  },
+                ),
+              )
+            ],
+          )
+        ],
       ),
     );
   }

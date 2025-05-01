@@ -14,10 +14,11 @@ class _HomeScreenState extends State<HomeScreen> {
       title: 'Ut lites',
       backgroundColor: Colors.blue,
       next: 'components',
-    ), WidgetExample(
+    ),
+    WidgetExample(
       title: 'Getx State',
       backgroundColor: Colors.blue,
-      next: 'components',
+      next: 'StateComponents',
     ),
   ];
 
